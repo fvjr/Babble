@@ -1,5 +1,7 @@
 const { Schema, model } = require("mongoose");
 
+const thoughtSchema = require("./Thought");
+
 const validateEmail = (email) => {
   const emailValidator = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
   return emailValidator.test(email);
@@ -29,9 +31,14 @@ const userSchema = new Schema(
   {
     toJSON: {
       getters: true,
+      virtuals: true,
     },
   }
 );
+
+userSchema.virtual("friendCount").get(function () {
+  return `${this.friends.length}`;
+});
 
 const User = model("user", userSchema);
 
