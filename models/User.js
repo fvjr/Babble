@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const thoughtSchema = require("./Thought");
 
+//function to validate user email
 const validateEmail = (email) => {
   const emailValidator = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
   return emailValidator.test(email);
@@ -25,8 +26,8 @@ const userSchema = new Schema(
         "Please enter a valid email address to create an account.",
       ],
     },
-    thoughts: [thoughtSchema],
-    friends: [userSchema],
+    thoughts: [{ _id: { type: String, ref: "thought" } }],
+    friends: [{ _id: { type: String, ref: "user" } }],
   },
   {
     toJSON: {
