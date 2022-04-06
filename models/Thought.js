@@ -9,7 +9,7 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
       maxlength: 280,
-      minlength: 4,
+      minlength: 1,
     },
     createdAt: {
       type: Date,
@@ -17,7 +17,9 @@ const thoughtSchema = new Schema(
     },
     username: {
       type: Schema.Types.ObjectId,
+      type: String,
       ref: "User",
+      required: true,
     },
     reactions: [reactionSchema],
   },
