@@ -36,6 +36,7 @@ module.exports = {
             })
           : res.json({
               user,
+              //STILL NEED ASSOCIATED THOUGHT AND REACTION DATA
             })
       )
       .catch((err) => {
@@ -45,6 +46,12 @@ module.exports = {
   },
 
   // - `POST` a new user:
+  //create a new user
+  createUser(req, res) {
+    User.create(req.body)
+      .then((user) => res.json(user))
+      .catch((err) => res.status(500).json(err));
+  },
 
   // - `PUT` to update a user by its `_id`
 
