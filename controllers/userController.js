@@ -9,6 +9,7 @@ const totalUsers = async () =>
     .then((numberOfUsers) => numberOfUsers);
 
 module.exports = {
+  // - `GET` all users
   //get all users
   getUsers(req, res) {
     User.find()
@@ -26,6 +27,7 @@ module.exports = {
   },
 
   //   - `GET` a single user by its `_id` and populated thought and friend data
+  //find user by id
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
       .select("-__v")
@@ -53,6 +55,8 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
 
+  // - `PUT` to update a user by its `_id`
+  //update user by id
   updateUser(req, res) {
     User.findOneAndUpdate({ _id: req.params.userId }, { $set: req.body })
       .then((user) =>
@@ -67,9 +71,23 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  // - `PUT` to update a user by its `_id`
 
   // - `DELETE` to remove user by its `_id`
+  //delete a user by id
+  deleteUser(req, res) {
+    User.findOneAndRemove({ _id: req.params.userId })
+      .then((user) =>
+        !user
+          ? res.status(404).json({
+              message: "No user found with this ID. Please try again.",
+            })
+          : res.json({ message: "User successfully deleted." })
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
 
   //   **`/api/users/:userId/friends/:friendId`**
 
