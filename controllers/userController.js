@@ -110,4 +110,21 @@ module.exports = {
   },
 
   // - `DELETE` to remove a friend from a user's friend list
+
+  deleteFriend(req, res) {
+    console.log("Adding friend");
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $pull: { friends: req.params.friendId } },
+      { new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({
+              message: "No user found with this ID. Please try again.",
+            })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
 };
