@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const thoughtSchema = require("./Thought");
+// const thoughtSchema = require("./Thought");
 
 //function to validate user email
 const validateEmail = (email) => {
@@ -26,14 +26,19 @@ const userSchema = new Schema(
         "Please enter a valid email address to create an account.",
       ],
     },
-    thoughts: [{ _id: { type: String, ref: "thought" } }],
-    friends: [{ _id: { type: String, ref: "user" } }],
+    // thoughts: [{ _id: { type: String, ref: "Thought" } }],
+    friends: [{ _id: { type: Schema.Types.ObjectId, ref: "user" } }],
+
+    // thoughts: [{ _id: { type: Schema.Types.ObjectId, ref: "Thought" } }],
+    // friends: [{ type: Schema.Types.ObjectId, ref: "user" }],
   },
   {
     toJSON: {
       getters: true,
       virtuals: true,
     },
+    //trying id options
+    id: false,
   }
 );
 
