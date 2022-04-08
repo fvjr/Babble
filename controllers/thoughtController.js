@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongoose").Types;
 const { Thought, User } = require("../models");
 
 module.exports = {
@@ -7,9 +8,7 @@ module.exports = {
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
-
   //   - `GET` to get a single thought by its `_id`
-
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
       .select("-__v")
@@ -71,12 +70,12 @@ module.exports = {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $pull: { reactions: { reactionId: req.params.reactionId } } },
-      { runValidators: true, new: true }
+      { new: true }
     )
-      .then((reaction) =>
-        !reaction
-          ? res.status(404).json({ message: "No reaction found with that ID." })
-          : res.json(reaction)
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: "No thought found with that ID." })
+          : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },
