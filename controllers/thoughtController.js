@@ -48,5 +48,22 @@ module.exports = {
 
   // - `POST` to create a reaction stored in a single thought's `reactions` array field
 
+  addReaction(req, res) {
+    console.log("Adding reaction to thought");
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({
+              message: "No thought found with this ID. Please try again.",
+            })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+
   // - `DELETE` to pull and remove a reaction by the reaction's `reactionId` value
 };
