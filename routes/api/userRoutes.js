@@ -12,19 +12,19 @@ const {
 // /api/users
 router
   .route("/")
-  // - `GET` all users
+  // - `GET` all users --> works
   .get(getUsers)
-  // - `POST` a new user:
+  // - `POST` a new user: --> works
   .post(createUser);
 
 // /api/users/:userId
 router
   .route("/:userId")
-  // - `GET` a single user by its `_id` and populated thought and friend data
+  // - `GET` a single user by its `_id` and populated thought and friend data -->works
   .get(getSingleUser)
-  // - `PUT` to update a user by its `_id`
+  // - `PUT` to update a user by its `_id` --> works
   .put(updateUser)
-  // - `DELETE` to remove user by its `_id`
+  // - `DELETE` to remove user by its `_id` -->works
   .delete(deleteUser);
 
 // /api/users/:userId/friends/:friendId

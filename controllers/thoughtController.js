@@ -26,6 +26,22 @@ module.exports = {
       });
   },
 
+  // - `PUT` to update a thought by its `_id`
+  updateThought(req, res) {
+    Thought.findOneAndUpdate({ _id: req.params.thoughtId }, { $set: req.body })
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({
+              message: "No thought found with this ID. Please try again.",
+            })
+          : res.json(thought)
+      )
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  },
+
   // - `POST` to create a new thought (don't forget to push the created thought's `_id` to the associated user's `thoughts` array field)
 
   //   **`/api/thoughts/:thoughtId/reactions`**
