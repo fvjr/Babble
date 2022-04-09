@@ -19,6 +19,11 @@ const thoughts = [
     username: "wendigo12345",
     userId: "624e257e61497f8da7ef2324",
   },
+  {
+    thoughtText: "It is important to drink enough water and get sunlight",
+    username: "wendigo12345",
+    userId: "624e257e61497f8da7ef2324",
+  },
 ];
 
 module.exports = { users, thoughts };
