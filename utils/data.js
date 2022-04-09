@@ -1,22 +1,22 @@
 const users = [
   {
-    username: "testName1",
-    email: "testemail@gmail.com",
+    username: "sweetPotato",
+    email: "sPotato212@gmail.com",
   },
   {
-    username: "friend111111111",
-    email: "friend111111111@gmail.com",
+    username: "cornCob4123",
+    email: "cornHusk@gmail.com",
   },
   {
-    username: "friend222222222",
-    email: "friend222222222@gmail.com",
+    username: "banana12494",
+    email: "friedBananas123123@gmail.com",
   },
 ];
 
 const thoughts = [
   {
-    thoughtText: "test thought text1",
-    username: "testName1",
+    thoughtText: "I almost forgot to eat my vegetables",
+    username: "wendigo12345",
     userId: "624e257e61497f8da7ef2324",
   },
 ];

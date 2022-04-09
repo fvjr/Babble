@@ -2,6 +2,11 @@ const { Schema, model } = require("mongoose");
 
 const reactionSchema = require("./Reaction");
 
+const opts = {
+  // Make Mongoose use Unix time (seconds since Jan 1, 1970)
+  timestamps: { currentTime: () => Math.floor(Date.now() / 1000) },
+};
+
 //Schema to create a Thought model
 const thoughtSchema = new Schema(
   {
@@ -14,6 +19,7 @@ const thoughtSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now,
+      get: (value) => value.toLocaleString(),
     },
     username: {
       type: String,
