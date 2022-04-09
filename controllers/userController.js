@@ -30,16 +30,14 @@ module.exports = {
   //find user by id
   getSingleUser(req, res) {
     User.findOne({ _id: req.params.userId })
-      .select("-__v")
+      .populate({ path: "thoughts", select: "-__v" })
+      // .select("-__v")
       .then(async (user) =>
         !user
           ? res.status(404).json({
               message: "No user found with that ID. Please review the ID",
             })
-          : res.json({
-              user,
-              //STILL NEED ASSOCIATED THOUGHT AND REACTION DATA
-            })
+          : res.json(user)
       )
       .catch((err) => {
         console.log(err);
@@ -103,7 +101,7 @@ module.exports = {
           ? res.status(404).json({
               message: "No user found with this ID. Please try again.",
             })
-          : res.json(user)
+          : res.json({ user })
       )
       .catch((err) => res.status(500).json(err));
   },

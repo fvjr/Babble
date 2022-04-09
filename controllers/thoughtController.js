@@ -43,15 +43,6 @@ module.exports = {
   },
 
   // - `POST` to create a new thought (don't forget to push the created thought's `_id` to the associated user's `thoughts` array field)
-  // createThought(req, res) {
-  //   Thought.create(req.body)
-  //     .then((thought) => res.json(thought))
-  //     .catch((err) => {
-  //       console.log(err);
-  //       return res.status(500).json(err);
-  //     });
-  // },
-
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
