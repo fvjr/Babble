@@ -28,9 +28,10 @@ Clone from my GitHub repo.
 Instructions and examples for use:
 Clone from my GitHub repo, seed the database via the command line ('npm run seed'), and then start the server via the command line ('node index.js').
 Want to see the application in use? Follow these links to watch the routes be tested through Insomnia:
-Video 1: https://drive.google.com/file/d/15O5y0R1whoZoN1SrX51Rd0EkE75-RpyV/view
 
-Video 2:https://drive.google.com/file/d/1N8x1fHIdoQQ7OfbYgMXpOOz-oH0bDsxI/view
+[Video 1](https://drive.google.com/file/d/15O5y0R1whoZoN1SrX51Rd0EkE75-RpyV/view)
+
+[Video 2](https://drive.google.com/file/d/1N8x1fHIdoQQ7OfbYgMXpOOz-oH0bDsxI/view)
 
 ![Project mock-up image.](./Assets/screenshot.PNG)
 
