@@ -81,7 +81,7 @@ module.exports = {
           ? res.status(404).json({
               message: "No user found with this ID. Please try again.",
             })
-          : Thought.deleteMany({ $in: user.thoughts })
+          : Thought.deleteMany({ _id: { $in: user.thoughts } })
       )
       .then(() =>
         res.json({
