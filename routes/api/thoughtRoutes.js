@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const { get } = require("express/lib/response");
+// const { get } = require("express/lib/response");
 const {
   getThoughts,
   getSingleThought,
