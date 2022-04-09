@@ -95,7 +95,6 @@ module.exports = {
     console.log("Adding friend");
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      // { $addToSet: { friends: req.params.friendId } },
       { $addToSet: { friends: { _id: req.params.friendId } } },
       { runValidators: true, new: true }
     )
@@ -110,7 +109,6 @@ module.exports = {
   },
 
   // - `DELETE` to remove a friend from a user's friend list
-
   deleteFriend(req, res) {
     console.log("Deleting friend from friend's list");
     User.findOneAndUpdate(
