@@ -73,20 +73,6 @@ module.exports = {
 
   // - `DELETE` to remove user by its `_id`
   //delete a user by id
-  // deleteUser(req, res) {
-  //   User.findOneAndRemove({ _id: req.params.userId })
-  //     .then((user) =>
-  //       !user
-  //         ? res.status(404).json({
-  //             message: "No user found with this ID. Please try again.",
-  //           })
-  //         : res.json({ message: "User successfully deleted." })
-  //     )
-  //     .catch((err) => {
-  //       console.log(err);
-  //       res.status(500).json(err);
-  //     });
-  // },
 
   deleteUser(req, res) {
     User.findOneAndRemove({ _id: req.params.userId }).then((user) =>
@@ -128,7 +114,7 @@ module.exports = {
     console.log("Deleting friend from friend's list");
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { friends: { _id: req.params.friendId } } },
+      { $pull: { friends: req.params.friendId } },
       { new: true }
     )
       .then((user) =>
