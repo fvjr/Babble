@@ -1,4 +1,5 @@
 const { ObjectId } = require("mongoose").Types;
+const res = require("express/lib/response");
 const { Thought, User } = require("../models");
 
 module.exports = {
@@ -42,6 +43,14 @@ module.exports = {
   },
 
   // - `POST` to create a new thought (don't forget to push the created thought's `_id` to the associated user's `thoughts` array field)
+  createThought(req, res) {
+    Thought.create(req.body)
+      .then((thought) => res.json(thought))
+      .catch((err) => {
+        console.log(err);
+        return res.status(500).json(err);
+      });
+  },
 
   // - `DELETE` to remove a thought by its `_id`
   deleteThought(req, res) {
@@ -60,7 +69,6 @@ module.exports = {
   //   **`/api/thoughts/:thoughtId/reactions`**
 
   // - `POST` to create a reaction stored in a single thought's `reactions` array field
-
   addReaction(req, res) {
     console.log("Adding reaction to thought");
     Thought.findOneAndUpdate(
