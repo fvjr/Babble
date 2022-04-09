@@ -17,7 +17,7 @@ router
   // - `GET` to get all thoughts
   .get(getThoughts) //-->working
   // - `POST` to create a new thought (don't forget to push the created thought's `_id` to the associated user's `thoughts` array field)
-  .post(createThought);
+  .post(createThought); //-->working
 
 // /api/thoughts/:thoughtId
 router

@@ -1,5 +1,6 @@
 const { ObjectId } = require("mongoose").Types;
-const { User } = require("../models");
+const { User, Thought } = require("../models");
+const thoughtController = require("./thoughtController");
 
 //aggregate function to get the number of users overal
 
@@ -72,15 +73,31 @@ module.exports = {
 
   // - `DELETE` to remove user by its `_id`
   //delete a user by id
+  // deleteUser(req, res) {
+  //   User.findOneAndRemove({ _id: req.params.userId })
+  //     .then((user) =>
+  //       !user
+  //         ? res.status(404).json({
+  //             message: "No user found with this ID. Please try again.",
+  //           })
+  //         : res.json({ message: "User successfully deleted." })
+  //     )
+  //     .catch((err) => {
+  //       console.log(err);
+  //       res.status(500).json(err);
+  //     });
+  // },
+
   deleteUser(req, res) {
-    User.findOneAndRemove({ _id: req.params.userId })
-      .then((user) =>
-        !user
-          ? res.status(404).json({
-              message: "No user found with this ID. Please try again.",
-            })
-          : res.json({ message: "User successfully deleted." })
-      )
+    User.findOneAndRemove({ _id: req.params.userId }).then((user) =>
+      !user
+        ? res.status(404).json({
+            message: "No user found with this ID. Please try again.",
+          })
+        : Thought.deleteMany({ $in: user.thoughts })
+    );
+    res
+      .json({ message: "User and associated thoughts successfully deleted." })
       .catch((err) => {
         console.log(err);
         res.status(500).json(err);
